@@ -1,0 +1,25 @@
+{% extends "weblogs/base.html" %}
+
+{% block content %}
+
+  <p>My posts</p>
+  
+  <ul>
+    {% for post in posts %}
+    <li>
+      <p>{{ post }}</p>
+      <p>{{ post.date_added|date:'M d, Y H:i' }}</p>
+      <p>{{ post.body|linebreaks }}</p>
+      <p>
+        <a href="{% url 'weblogs:edit_post' post.id %}">edit post</a>
+      </p>
+    </li>
+    {% empty %}
+      <li>You do not have any blog posts yet- create a new one
+        <a href="{% url 'weblogs:new_post' %}">here</a>.
+      </li>
+    {% endfor %}
+  </ul>
+  
+{% endblock content %}
+

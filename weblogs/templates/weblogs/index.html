@@ -1,0 +1,22 @@
+{% extends "weblogs/base.html" %}
+
+{% block content %}
+
+<p>Weblog allows you to share stories, knowledge, and everyday
+	experiences with others.</p> 
+	
+  <a href="{% url 'weblogs:new_post' %}">Create a post:</a>
+  
+  <ul>
+    {% for post in posts %}
+	  <li>
+		<p>{{ post }}</p>
+		<p>{{ post.date_added|date:'M d, Y H:i' }}</p>
+		<p>{{ post.body|linebreaks }}</p>
+	  </li>
+	{% empty %}
+	  <li>There are no blog posts yet.</li>
+    {% endfor %}
+  </ul>
+  
+{% endblock content %}
