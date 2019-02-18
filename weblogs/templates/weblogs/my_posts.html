@@ -12,6 +12,7 @@
       <p>{{ post.body|linebreaks }}</p>
       <p>
         <a href="{% url 'weblogs:edit_post' post.id %}">edit post</a>
+        <a href="{% url 'weblogs:delete_post' post.id %}">delete post</a>
       </p>
     </li>
     {% empty %}

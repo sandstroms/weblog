@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # My apps
     'weblogs',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# My settings
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/users/login/'
