@@ -1,21 +1,52 @@
 {% extends "weblogs/base.html" %}
 
-{% block content %}
+{% block header %}
+  <div class='jumbotron'>
+    <h1>Share your interests.</h1>
+  </div>
+{% endblock header %}
 
-<p>Weblog allows you to share stories, knowledge, and everyday
-	experiences with others.</p> 
-	
-  <a href="{% url 'weblogs:new_post' %}">Create a post:</a>
+{% block content %}
+  
+
+  {% if user.is_authenticated %}
+    <h2>
+      <a href="{% url 'weblogs:new_post' %}">Create a post</a> to share
+      your ideas and stories with others.
+    </h2>
+  {% else %}
+    <h2>
+      <a href="{% url 'users:register' %}">Register for an account</a>
+      to create your own posts to share ideas, promote a cause, or relate
+      experiences with others.
+    </h2>
+  {% endif %}
   
   <ul>
     {% for post in posts %}
-	  <li>
-		<p>{{ post }}</p>
-		<p>{{ post.date_added|date:'M d, Y H:i' }}</p>
-		<p>{{ post.body|linebreaks }}</p>
-	  </li>
-	{% empty %}
-	  <li>There are no blog posts yet.</li>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>
+            {{ post }}
+            <small>
+		      {{ post.owner }} -
+              {{ post.date_added|date:'M d, Y H:i' }}
+            </small>
+          </h3>
+        </div>
+        <div class="panel-body">
+	      {{ post.body|linebreaks }} 
+        </div>
+      </div> <!-- panel -->
+	
+	  {% empty %}
+	    {% if user.is_authenticated %}
+          <h3>There are no posts yet. Be the first to share.</h3>
+        {% else %}
+          <h3>
+	        There are no posts yet. Register to be the first to share.</li>
+          </h3>
+        {% endif %}
     {% endfor %}
   </ul>
   

@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    # Third-party apps
+    'bootstrap3',
+    #'bootstrap4',
+    
     # My apps
     'weblogs',
     'users',
@@ -126,3 +130,8 @@ STATIC_URL = '/static/'
 # My settings
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/users/login/'
+
+# Settings for django-boostrap3
+BOOTSTRAP3 = {
+	'include_jquery': True,
+	}
