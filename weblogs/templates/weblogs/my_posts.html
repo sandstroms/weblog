@@ -8,6 +8,8 @@
 
   <ul>
     {% for post in posts %}
+      <a href="{% url 'weblogs:edit_post' post.id %}">edit post</a> -
+      <a href="{% url 'weblogs:delete_post' post.id %}">delete</a>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3>
@@ -21,8 +23,6 @@
 	      {{ post.body|linebreaks }} 
         </div>
       </div> <!-- panel -->
-	  <a href="{% url 'weblogs:edit_post' post.id %}">edit post</a> -
-      <a href="{% url 'weblogs:delete_post' post.id %}">delete</a>
 
     {% empty %}
       <h3>
